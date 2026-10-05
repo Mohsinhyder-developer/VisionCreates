@@ -170,7 +170,7 @@ const data={name:$('#n').value,email:$('#e').value,company:$('#c').value,website
 /* BACKEND HOOK: POST `data` to your API route or email service here, e.g. fetch('/api/contact',{method:'POST',body:JSON.stringify(data)}) */
 const btn=e.target.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending…';
 /* CONFIG: paste your free Web3Forms access key (web3forms.com) below. The destination email lives in your Web3Forms account, never on this page. */
-const KEY='',ENDPOINT='https://api.web3forms.com/submit';
+const KEY='b934c1c4-e2c3-45f5-97da-62f270690bf5',ENDPOINT='https://api.web3forms.com/submit';
 const fail=()=>{btn.disabled=false;btn.textContent='Send Inquiry →';let m=$('#fe');if(!m){m=document.createElement('p');m.id='fe';m.className='er';m.setAttribute('role','alert');btn.parentNode.appendChild(m)}m.textContent='Sorry, your message could not be sent. Please try again later.'};
 if(!KEY){fail();return}
 fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:KEY,subject:'New project inquiry — '+data.type,from_name:'Vision Creates website',name:data.name,email:data.email,company:data.company,website:data.website,project_type:data.type,budget:data.budget,message:data.details})}).then(r=>r.json()).then(j=>{if(!j.success)throw 0;$('#fw').innerHTML='<div class="ok" role="status"><h3>Thanks, your inquiry was sent.</h3><p style="color:var(--mut);margin-top:10px">We will reply to the email address you provided.</p></div>'}).catch(fail);}}}),
